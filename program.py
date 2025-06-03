@@ -68,9 +68,10 @@ class replacingColor():
 
     def getResult(self):
         return self.result
-    
+
     def getMasking(self):
         return self.masking
+
 
     
 if __name__ == "__main__":

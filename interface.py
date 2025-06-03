@@ -55,7 +55,7 @@ with tab2:
         )
 
     with col3T:
-        sTolInp = st.number_input(
+        vTolInp = st.number_input(
             label="Toleransi V",
             max_value=255,
             min_value=0,
@@ -66,15 +66,27 @@ with tab2:
 
 
 if st.button("Ubah Warna"):
-    st.session_state.colorReplace.changeThreshold(hTolInp,sTolInp,sTolInp)
-    st.session_state.colorReplace.inputImage(img, colorAwal,colorAkhir)
-    st.session_state.status = True
+    if img is not None:
+        st.session_state.colorReplace.changeThreshold(hTolInp, sTolInp, vTolInp)
+        st.session_state.colorReplace.inputImage(img, colorAwal, colorAkhir)
+        st.session_state.status = True
+    else:
+        st.warning("Mohon upload gambar terlebih dahulu.")
 
 if st.session_state.get("status", False):
+    result_img = st.session_state.colorReplace.getResult()
+    mask_img = st.session_state.colorReplace.getMasking()
+
     col1Result, col2Result = st.columns(2)
     with col1Result:
-        st.image(st.session_state.colorReplace.getMasking(), channels='GRAY', caption="Hasil Masking")
+        if mask_img is not None:
+            st.image(mask_img, channels='GRAY', caption="Hasil Masking")
+        else:
+            st.warning("Masking belum tersedia.")
+
     with col2Result:
-        st.image(st.session_state.colorReplace.getResult(), channels='BGR', caption="Hasil Akhir")
-else:
-    pass
+        if result_img is not None:
+            st.image(result_img, channels='BGR', caption="Hasil Akhir")
+        else:
+            st.warning("Gambar hasil belum tersedia.")
+
