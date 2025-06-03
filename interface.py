@@ -70,7 +70,7 @@ if st.button("Ubah Warna"):
     st.session_state.colorReplace.inputImage(img, colorAwal,colorAkhir)
     st.session_state.status = True
 
-if st.session_state.get("status", False) and st.session_state.colorReplace.getMasking() != None and st.session_state.colorReplace.getResult() != None:
+if st.session_state.get("status", False):
     col1Result, col2Result = st.columns(2)
     with col1Result:
         st.image(st.session_state.colorReplace.getMasking(), channels='GRAY', caption="Hasil Masking")
