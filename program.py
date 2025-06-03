@@ -7,6 +7,8 @@ class replacingColor():
         self.hTol = hTol
         self.sTol = sTol
         self.vTol = vTol
+        self.masking = None
+        self.result = None
 
     def changeThreshold(self, hTol, sTol, vTol):
         self.hTol = hTol
