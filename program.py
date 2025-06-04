@@ -42,7 +42,7 @@ class replacingColor():
         hB, sB, vB = self.convertToHSV(self.before) 
         # hA, sA, vA = self.convertToHSV(self.after) 
         batasAtas = np.array([
-            min(int(hB) + self.hTol, 179),
+            min(int(hB) + self.hTol, 255),
             min(int(sB) + self.sTol, 255),
             min(int(vB) + self.vTol, 255)
         ])
